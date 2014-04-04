@@ -14,7 +14,7 @@
 % This will result in survey paper on LBKD in the field of climate change [month 6]
 
 
-\documentclass[11pt,twoside,a4paper]{report}
+\documentclass[11pt,oneside,a4paper]{report}
 \usepackage{natbib}
 \usepackage{graphicx}
 \usepackage{hyperref}
@@ -37,6 +37,9 @@
 
 \abstract{}
 
+\tableofcontents
+
+
 \chapter{Introduction}
 
 
@@ -44,48 +47,50 @@
 
 \todo[inline]{Describe text mining, especially entity detection, relation extraction and event extraction in BioNLP}
 
-There is a fast growing amount of \emph{structured data} in the form of very large databases, numerical data collections and log files, commonly referred to as \emph{Big Data} nowadays.
-Data mining, also known as \emph{knowledge discovery}, is about the discovery of interesting patterns in huge data collections through computational analysis.
+There is a fast growing amount of \emph{structured data} in the form of very large databases, numerical data collections, multimedia data and log files, commonly referred to as \emph{Big Data} nowadays.
+Data mining, also known as \emph{knowledge discovery} from data, is about the discovery of interesting patterns in huge data collections through computational analysis.
 In addition, however, there is a parallel stream of so-called \emph{unstructured data} in the form of text.
 This comprises traditional sources such as newspapers, books, magazines and journals, as well as new media such webpages (Wikepedia), blogs, social media (Facebook) and messaging (Twitter).
+Much of the collective knowledge of the human race is encoded in the form of text. 
 Data mining methods can not handle text as input.
-Therefore text needs to be converted to some form of structured data first in order to perform data mining.
-This is essentialy what \emph{text mining} is about: extracting structured information from text in order to discover patterns in huge text collections through computational analysis.
-Text mining can therefore be regarded as a combination of information retrieval, information extraction, natural language processing and data mining.
+Therefore text needs to be converted to some form of structured data first in order to allow data mining.
+This is essentialy what \emph{text mining} is about: extracting structured information from text in order to discover patterns in huge text collections through computer processing.
+Text mining can accordingly be regarded as a combination of information retrieval, information extraction, natural language processing and data mining.
 
-Information retrieval (IR) addresses the task of searching a large document collection for documents that are relevent to a user's informational needs as expressed in a search query. 
+Information retrieval (IR) addresses the task of searching a large document collection for documents that are relevent to a user's informational needs as expressed in a search query \citep{ManningRaghavanSchutze:08}. 
 The most common IR applications nowadays are web search engines which try to retrieve relevant text documents from the web, mostly webpages, on the basis of a number of keywords or phrases.
-Specialized search engines exists for particular documents collections, for instance, to search scientific publications in the area of biomedicine.
+Specialized search engines exists for particular documents collections, for instance, to search scientific publications in the area of biomedicine (PUBMED).
 IR is typically the first step in text mining in order to narrow down the set of relevant documents to a size managable for more in depth analysis.
 
-Information extraction (IE) is the process of automatically extracting structured information from text.
-What type of structured information is extracted depends on the application, but usually involves two broad types of information: \emph{entities} and \emph{relations}.
+Information extraction (IE) is the process of automatically extracting structured information from text \citep{Jiang2012Information}.
+What type of structured information is extracted depends on the application, but usually involves two general types of information: \emph{entities} and \emph{relations}.
 Entities are the things mentioned in the text.
 These can be general like people, organisations, companies or places, but can also be domain-specific such as proteins, genes or drugs, organisms or anatomical parts.
 Finding entities in text is called \emph{named entity recognition}.
 Relations hold among pairs of entities.
-For example, a company can buy or sell another company, a certain protein may interact with a certain gene, or a certain drug may cause a ceratin side effect.
+For example, a company can \emph{buy} or \emph{sell} another company, a certain protein may \emph{interact} with a certain gene, or a certain drug may \emph{cause} a certain side effect.
 Finding these relations in text is known as \emph{relation extraction}.  
 Relations may be more complex than simple binary relations between pairs of entities.
 They may involve multiple entities playing different roles, additional circumstances, or even relations between relations.
-In this case, it is common to talk about \emph{events} and \emph{event extraction}.    
+In this case, it is common to talk about \emph{events} and \emph{event extraction}.
 
-Natural language processing (NLP) concerns automatic analysis and ultimately understanding of language by computers, usually from an applied point of view.  
-Natural languages such as English -- as opposed to artificial languages like programming languages -- are extremely complex and versatile symbolic systems that humans use to exchange information.
+Natural language processing (NLP) concerns automatic analysis of language by computers, usually from an applied point of view.  
+Natural languages such as English or Chinese -- as opposed to artificial languages like programming languages -- are extremely complex and versatile symbolic systems that have evolved over time to enable humanes to exchange information.
 Language can convey many different types of information, ranging from simple facts to complex arguments or emotional states.
-Notwithstanding tremendous progress in NLP, computers are still far from real understanding of language and currently manage a shallow understanding of meaning at best.
-In practice, NLP for a specific domain, e.g. stock market reports or biomedical research articles, works significantly better than NLP for unrestricted domains, because domain-specific language use and knowledge can be exploited.
-Hence NLP techniques and tools are often domain-specific.
+Notwithstanding tremendous progress in NLP over te last decades, computers are still far from real understanding of language and currently manage a shallow understanding of meaning at best.
+In practice, NLP for a specific domain, e.g. stock market reports or biomedical research articles, works significantly better than NLP for unrestricted input, because domain-specific language use and knowledge can be exploited to improve interpretation. 
+Hence NLP techniques, tools and resources are often tied to a particular application domain.
 
-IR usually relies on some forms of NLP.
+Most IR systems rely to some extent on NLP.
 Key word search, for instance, often involves a \emph{lemmatisation} step wich relates all morphological variants of a word to its stem.
 For example, the verbs \emph{diving}, \emph{dives}, \emph{dove}, \emph{dived} are all linked to their base form \emph{dive}.
 For many languages, this improves recall of relevant documents at the (slight) expense of precision.
+More advanced NLP techniques are keyword expansion with automatically learned synonymns and word sense disambiguation for keywords with more than one possible interpretation.  
 
-IE usually depends on NLP to a much larger degree for linguistic analysis of the input text.
-Common NLP techniques are \emph{part-of-speech tagging} (labeling tokens according to their word class such a noun, verb or preposition ), lemmatisation and syntactic parsing (analysis of the grammatical structure of sentences).
-Linguistic annotations ofthe  text serve as input to algorithms for entity recognition and relation extraction, which can range from hand-written pattern matching rules to data-driven machine learning algorithms.
-Like domain-specific NLP, IE is usually rather restricted in scope, that is, it targets a small subset of entities and relations of interest, ignoring all other meaning contained in the text.    
+IE tends to be highly dependent on NLP for linguistic analysis and interpretation of the input text prior to actual extraction.
+Common NLP techniques are \emph{part-of-speech tagging} (labeling tokens according to their word class such a noun, verb, preposition, etc.), lemmatisation and syntactic parsing (analysis of the grammatical structure of sentences).
+The resulting linguistic annotations of the text serve as input to the algorithms for entity recognition and relation extraction, which can range from hand-written pattern matching rules to data-driven machine learning algorithms.
+Like domain-specific NLP, IE is usually rather restricted in scope, that is, it targets a small subset of entities and relations of interest in the given domain, ignoring all other meaning contained in the text.    
 
 Even with these limitations to a particular domain and to particular aspects of meaning, computers still make many mistakes in processing text, misinterpreting text and failing to detect important information.
 Despite all their limitations, computers have one major advantage over humans when it comes to reading text: processing power. 
@@ -101,6 +106,8 @@ It currently contains over 21 million records and grows at a rate of approximate
 Even though it allows researchers to retrieve documents by means of keyword search, search queries may return thousands of hits and checking all of them for relevant information is practically infeasible.
 Text mining tools can offer a solution.
 They can be be used for task such as further filtering of documents, clustering similar documents, automatically extracting information of interest, summarizing information through text and/or visualisation, and discovering regularities or inconsistencies.
+There are many excellent survey and review articles about text mining in biomedicine 
+\citep{Neves2012Survey,Simpson2012Biomedical,Andronis2011Literature,Ananiadou2010Event,RodriguezEsteban2009Biomedical,Zweigenbaum2009Advanced,Cohen2008Getting,Zweigenbaum2007Frontiers,Ananiadou2006,Erhardt2006Status,JenEA06,Spasic2005Text,Cohen2005Survey,Krauthammer2004Term}.
 
 Generic text mining tools are not well-suited for biomedical text because of highly specialized language use (jargon). 
 For example, many terms have a particular meaning or do not occur at all outside of biomedical texts.
@@ -118,7 +125,7 @@ relation extraction
 event extraction
 
 
-\section{Machine Readiing and Open Information Extraction}
+\section{Machine Reading and Open Information Extraction}
 
 \todo[inline]{NLU, open IE}
 
@@ -130,7 +137,7 @@ event extraction
 
 \chapter{Text mining in Climate, Marine and Environmental Science}
 
-\todo[inline]{Text mining work in related areas, e.g. Kyoto, GeoDeepDive, Text Mining for Marine Ecological Genomics}
+\todo[inline]{Text mining work in related areas, e.g. Kyoto, GeoDeepDive, text mining for Marine Ecological Genomics, environmental QA in machine reading challenge}
 
 \chapter{Ongoing and future work} 
 
