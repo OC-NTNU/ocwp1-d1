@@ -1,48 +1,3 @@
-% Notes on writing:
-% 
-% * Use one sentence per line (no hard word wrapping), which makes merging different versions a lot easier.
-% * Use \EM{}, \PO{} or \EA{} to add your personal comments or todos.
-% * Using Git, the easiest way is probably to create your own branch and merge updates into the master branch. For Mac, see https://mac.github.com
-
-
-
-% From DoW (603773_DOW_2013-08-05[3].pdf, p.17):
-%
-% D1.3) Report on LBKD model and method in the climate change domain: 
-% A survey of the key publications, approaches, software and resources on Literature-Based Knowledge Discovery will be conducted. 
-% In addition, any work in this area specifically related to climate change will be surveyed. 
-% This will result in survey paper on LBKD in the field of climate change [month 6]
-
-
-\documentclass[11pt,oneside,a4paper]{report}
-\usepackage{natbib}
-\usepackage{graphicx}
-\usepackage{hyperref}
-\usepackage{url}
-\usepackage{todonotes}
-% To hide all notes use 
-% \usepackage[disable]{todonotes}
-
-
-\newcommand{\EM}[1]{\todo[inline,author=EM,color=yellow]{#1}}
-\newcommand{\PO}[1]{\todo[inline,author=PO,color=blue]{#1}}
-\newcommand{\EA}[1]{\todo[inline,author=EA,color=green]{#1}}
-
-
-\begin{document}
-
-\title{Deliverable D1.1:\\ Literature-based Knowledge Discovery\\in Climate, Marine and Environmental Science}
-\author{Erwin Marsi, Pinar \"Ozt\"urk, Elias Aamot}
-\date{April 2014}
-\maketitle
-
-\abstract{}
-
-\tableofcontents
-
-
-\chapter{Introduction}
-
 
 \chapter{Text Mining}
 
@@ -105,6 +60,7 @@ The main strenght of text mining thus comes from the ability to process big text
 One of the challenges in this area is how best to combine the fast but shallow and noisy processing capabilities of text mining systems with the slow but deep language understanding capibilities of humans.
 
 \section{Text Mining in Biology and Medicine}
+\label{sec:tm-biomed}
 
 The first and most active area for research on, and application of, text mining is that of scientific publications in fields of biology and medicine, collectively referred to as \emph{biomedicine}.
 One of the main reasons for this is the volume and rate of publications in biomedicine.
@@ -140,90 +96,19 @@ event extraction
 
 \citet{Etzioni2011Search}
 
-\include{lbkd}
+From DeepDive:
+Knowledge-base construction (KBC) is the process of pop-
+ulating a knowledge base (KB) with facts (or assertions)
+extracted from text. It has recently received tremendous
+interest from academia, e.g., CMU's NELL [2] and MPI's
+YAGO [7,9], and from industry, e.g., IBM's DeepQA [5] and
+Microsoft's EntityCube [16]. 
+
 
 \todo[inline]{inference and reasoning, relation to GOFAI}
 
-\chapter{Text mining in Climate, Marine and Environmental Science}
 
-\todo[inline]{Text mining work in related areas, e.g. Kyoto, GeoDeepDive, text mining for Marine Ecological Genomics, environmental QA in machine reading challenge}
-
-
-\section{Tools and Resources}
-
-\subsection{Vocabularies , Taxonomies and Ontologies}
-
-There are several specialized controlled vocabularies and ontologies which may benefit text mining in climate, marine and environmental science.
- 
-The Environment Ontology\footnote{\url{http://environmentontology.org/home}} (EnvO) is an ontology about environments  \citep{Buttigieg2013Environment} of biological organisms.
-It provides a controlled, structured vocabulary of over 1800 terms to annotate biological entities or samples with environmental descriptors.
-There are three main types of terms:
-
-\begin{itemize}
-\item \emph{biome}: e.g., boreal moist forest biome, tropical rain forest biome, and oceanic pelagic zone biome 
-\item \emph{environmental feature}: e.g, mountain, pond, whale fall, and karst
-\item \emph{environmental material}: e.g., sediment, soil, water, and air
-\end{itemize}
-
-\noindent The ontology is intended to facilitate integration, archiving and federated searching of environmental data.
-It also contains environmental terms in the domain marine biology.
-For example, Figure~\ref{fig:envo-example} shows the term \emph{marine algal bloom}.
-The left side shows a definiton, known synonymyms (\emph{red tide}), and links to external definitions like the one in Wikipedia.
-The right side shows a graphical representation of the ontological relations.
-For instance, that \emph{marine algal bloom} is a kind of \emph{algal bloom}, which ultimately is a kind of \emph{environmental feature}, and that  \emph{marine algal bloom} is located in a\emph{ marine biome}, which ultimately is an \emph{environmental system.}
-
-\begin{figure}
-\begin{center}
-\includegraphics[scale=0.6]{envo-example.pdf}
- \caption{Example of entity \emph{marine algal bloom} in EnvO ontology}
-\label{fig:envo-example}
-\end{center}
-\end{figure}
-
-
-WoRMS\footnote{\url{http://www.marinespecies.org/}}  (World Register of Marine Species) aims to provide an authoritative and comprehensive list of names of marine organisms, including information on synonymy \citep{Costello2013Global}.
-It contains over 220 thousand species, with an estmated coverage of over 95\%.
-There is webservice that allows tasks such getting the full classification for your taxa, resolving unaccepted names to accepted ones or resolving a common name to a scientific name.
-
-The Marine Metadata Interoperability\footnote{\url{https://marinemetadata.org/}} (MMI) project has as its mission promoting the exchange, integration and use of marine data through enhanced data publishing, discovery, documentation and accessibility.
-It hosts. among other things, an ontology repository and associated semantic framework that can be used by the marine science community to store, manage, and work with its scientific vocabularies.
-
-
-\subsection{Named Entity Taggers}
-
-Many named entity taggers are developed for biomedicine and target specific entities of interest in this domain, such a proteins, genes and drugs.
-These are of limited use for text mining in climate, marine and environmental science. 
-However, there are a number of taggers for recognition and normalization of biological or chemical entities that are potentially useful for our purposes.
-
-LINNAEUS\footnote{\url{http://linnaeus.sourceforge.net/}} is an open-source software package for species name recognition and normalization \citep{Gerner2010LINNAEUS}. 
-Enities are normalized by linking them to unique indentifiers the NCBI taxonomy database\footnote{\url{http://www.ncbi.nlm.nih.gov/taxonomy}}, a curated classification and nomenclature for all of the organisms in the public sequence databases, covering about 10\% of the described species of life on the planet.
-It uses a dictionary-based approach to identify species names and a set of heuristics to resolve ambiguous mentions, obtaining 94\% recall and 97\% precision on entity recognition, with 97\% of all mentions resolved to the correct NCBI taxonomy identifiers.
- 
-The SPECIES (Identification of Taxonomic Mentions in Text) project\footnote{\url{http://species.jensenlab.org/}} has developed taggers for species and organisms mentions in text \citep{Pafilis2013SPECIES}. 
-The taggers allow for both identification of names in the text and normalization to the corresponding entries in the NCBI taxonomy.
-These tools are claimed to be an order of magnitude faster than LINNAEUS.
-
-OSCAR4\footnote{\url{https://bitbucket.org/wwmm/oscar4}} (Open Source Chemistry Analysis Routines) is an open source extensible system for the automated annotation of chemistry in scientific articles \citep{Jessop2011OSCAR4}.
-It can be used to identify chemical names, reaction names, ontology terms, enzymes and chemical prefixes and adjectives, and chemical data such as state, yield, IR, NMR and mass spectra and elemental analyses. 
-In addition, where possible, any chemical names detected will be annotated with structures derived either by lookup, or name-to-structure parsing using OPSIN or with identifiers from the ChEBI (Chemical Entities of Biological Interest) ontology.
-
-ChemSpot\footnote{\url{https://www.informatik.hu-berlin.de/forschung/gebiete/wbi/resources/chemspot/chemspot/}} is another set of tools for named entity recognition and classification of chemicals in texts, including trivial names, abbreviations, molecular formulas and International Union of Pure and Applied Chemistry (IUPAC) chemical compounds. 
-ChemSpot employs supervised-machine learning (Conditional Random Field) and a dictionary, as well as pattern-based recognition, a classifier model and several methods for consolidating all annotations. 
-ChemSpot also performs named entity normalization by assigning identifiers from numerous chemical databases. 
-
-CheNER\footnote{\url{http://chener.bioinfo.cnio.es/}} (Chemical Named Entity Recognizer) is another recent tool. It specializes on processing IUPAC entities, on which it is shown to outperform Chemspot \citep{Usie2014CheNER}.
-
-The ENVIRONMENTS\footnote{\url{http://envo.her.hcmr.gr/environments.html}} (Identification of Environment Descriptive Terms in Text) project aims to produce software identifying environment descriptive terms in text, such as coral reef, cultivated land, glacier, pelagic, forest, lagoon.
-It allows for orthographic variation in the way the terms are written (e.g. plural forms and spacing/hyphenation like in freshwater, fresh-water, and "fresh water).
-Terms are normalized by linking them to a unique identifier is the Environmental Ontology (EnvO).
-The project is ongoing and as of yet no software has been released.
-
-
-\chapter{Ongoing and future work} 
-
-\todo[inline]{Brief description of our current work and plans on LBD}
-
-\bibliographystyle{plainnat}
-\bibliography{ocwp1_d1}
-
-\end{document}
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "ocwp1-d1"
+%%% End: 
