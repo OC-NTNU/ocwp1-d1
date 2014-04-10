@@ -1,0 +1,56 @@
+% Notes on writing:
+% 
+% * Use one sentence per line (no hard word wrapping), which makes merging different versions a lot easier.
+% * Use \EM{}, \PO{} or \EA{} to add your personal comments or todos.
+% * Using Git, the easiest way is probably to create your own branch and merge updates into the master branch. For Mac, see https://mac.github.com
+
+
+
+% From DoW (603773_DOW_2013-08-05[3].pdf, p.17):
+%
+% D1.3) Report on LBKD model and method in the climate change domain: 
+% A survey of the key publications, approaches, software and resources on Literature-Based Knowledge Discovery will be conducted. 
+% In addition, any work in this area specifically related to climate change will be surveyed. 
+% This will result in survey paper on LBKD in the field of climate change [month 6]
+
+
+\documentclass[11pt,oneside,a4paper]{report}
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{todonotes}
+% To hide all notes use 
+% \usepackage[disable]{todonotes}
+
+
+\newcommand{\EM}[1]{\todo[inline,author=EM,color=yellow]{#1}}
+\newcommand{\PO}[1]{\todo[inline,author=PO,color=blue]{#1}}
+\newcommand{\EA}[1]{\todo[inline,author=EA,color=green]{#1}}
+
+
+\begin{document}
+
+\title{Deliverable D1.1:\\ Literature-based Knowledge Discovery\\in Climate, Marine and Environmental Science}
+\author{Erwin Marsi, Pinar \"Ozt\"urk, Elias Aamot}
+\date{Unfinished draft -- \today}
+\maketitle
+
+\abstract{}
+
+\tableofcontents
+
+\include{introduction}
+
+\include{text-mining}
+
+\include{lbkd}
+
+\include{climate-text-mining}
+
+\include{future}
+
+\bibliographystyle{plainnat}
+\bibliography{ocwp1_d1}
+
+\end{document}
