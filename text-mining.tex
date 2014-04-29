@@ -1,7 +1,7 @@
 
 \chapter{Text Mining}
 
-\todo[inline]{Describe text mining, especially entity detection, relation extraction and event extraction in BioNLP}
+\section{Text Mining in General}
 
 There is a fast growing amount of \emph{structured data} in the form of very large databases, numerical data collections, multimedia data and log files, commonly referred to as \emph{Big Data} nowadays.
 \emph{Data mining} -- also known as \emph{knowledge discovery} from data -- is about the discovery of interesting patterns in huge data collections through computational analysis \citep{han2006data}.
@@ -59,12 +59,12 @@ Despite all their limitations, computers have one major advantage over humans wh
 Computers can process thousands or millions of documents in a relatively short time, something a human reader would never be able to match.
 The main strenght of text mining thus comes from the ability to process big text data.
 One of the challenges is how best to combine the fast but shallow and noisy processing capabilities of text mining systems with the slow but deep language understanding capibilities of humans.
-This relates to fields such as human-computer interaction and information visualisation.   
+This relates to the fields of human-computer interaction and information visualisation.   
 
-\section{Text Mining in Biology and Medicine}
+\section{Text Mining Applications in Biomedicine}
 \label{sec:tm-biomed}
 
-The first and most active area for research on, and application of, text mining is that of scientific publications in fields of biology and medicine, collectively referred to as \emph{biomedicine}.
+The first and most active area for research on, and application of, text mining is that of scientific publications in the fields of biology and medicine, collectively referred to as \emph{biomedicine}.
 One of the main reasons for this is the volume and rate of publications in biomedicine.
 The MEDLINE (Medical Literature Analysis and Retrieval System Online) is a bibliographic database which indexes most biomedical publications from over 5,5000 journals since the 1950s.
 Abstracts are searchable with PubMed, which currently contains over 23 million records and grows at a rate of approximately three publications a minute.
@@ -75,18 +75,48 @@ They can be be used for tasks such as further filtering of documents, clustering
 
 There are already many excellent survey and review articles about text mining in biomedicine, including
 \citep{Neves2012Survey,Simpson2012Biomedical,Andronis2011Literature,Ananiadou2010Event,RodriguezEsteban2009Biomedical,Zweigenbaum2009Advanced,Cohen2008Getting,Zweigenbaum2007Frontiers,Ananiadou2006,Erhardt2006Status,JenEA06,Spasic2005Text,Cohen2005Survey,Krauthammer2004Term,Blake2011Text,Krallinger2010Analysis}.
-Since we do not want to duplicate these efforts with yet another survey, our discussion here is limited to a brief summary of those aspects related to information extraction and literature-based knowledge discovery.  
+Since we do not want to duplicate these efforts with yet another survey, our discussion here is limited to a couple of examples of text mining applications in biology and medicine.
 
-Generic text mining tools are not well-suited for biomedical text because of highly specialized language use (jargon). 
-For example, many terms have a particular meaning or do not occur at all outside of biomedical texts.
-Moreover, text mining is highly dependent on the type of application, because different goals require different methods and tools.
-There are a couple of prototypical applications in biomedical text mining which have driven much of the research efforts and the development of tools and resources.
-One instance is finding interactions among proteins in order to find biological pathways, which are series of actions among molecules giving rise to some product or a change in a cell.
-Another instance is mining interations between drugs, or between a drugs and their side effects, with the goal of drug retargetting or repurposing, that is, finding new applications for existing drugs.
+The Information Hyperlinked Over Proteins\footnote{\url{http://www.ihop-net.org}} (iHop) system \citep{hoffmann2004gene} is a free online service that provides acess to hyperlinked versions of abstracts from PubMed, a large database containing millions of abstract from journal articles in biomedicine.
+Every occurrence of an enitity, such as a gene or a protein, is hyperlinked to its occurrences in other abstracts, making it easy to hop from one sentence/abstract to another one.
+Given a gene, users can search for other genes that it interacts with (Figure~\ref{fig:ihop-1}), go on to a list of sentences where the interactions are extracted from (Figure~\ref{fig:ihop-2}) , and go on from sentences to the abstracts they originate from  (Figure~\ref{fig:ihop-3}).   
+Interactions can be stored to build an interaction graph where nodes are genes and edges are links to sentences entailing the interaction. 
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.6]{figures/ihop-1.pdf}
+ \caption{iHop view of interacting genes }
+\label{fig:ihop-1}
+\end{center}
+\end{figure}    
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.6]{figures/ihop-2.pdf}
+ \caption{iHop view of sentences describing interactions}
+\label{fig:ihop-2}
+\end{center}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.6]{figures/ihop-3.pdf}
+ \caption{iHop view of hyperlinked abstract}
+\label{fig:ihop-3}
+\end{center}
+\end{figure}
+
+\EM{More examples of applications/systems for text mining in biomedicine}
+
+
+\section{Tools for Text Mining in Biomedicine}
+\label{sec:tools-tm}
 
 \subsection{Entity Detection}
 
 \emph{Entity detection} -- often called named \emph{entity recognition} (NER) in other areas of NLP -- is the process of detecting mentions of entities in text.
+Generic enitity detection tools are not well-suited for biomedical text because of highly specialized language use (jargon). 
+For example, many terms have a particular meaning or do not occur at all outside of biomedical texts.
 In biomedicine, it is usually quite clear what the entities of interest are, for example, genes, proteins, cells, drugs, organisms, etc.
 However, detecting entities is a non-trivial task due to a number of complications.
 
@@ -106,39 +136,89 @@ Third, as science progresses in ceratin domain, so does the sublanguage to descr
 This means that systems for named entity detectection must be updated all the time. 
 In addition, terms may gradually change meaning over time, a phenomenon known as \emph{semantic drift}.
 
-\EM{tools, bionlp challenges}
-
 \subsection{Relation Extraction}   
 
 Relation extraction aims at automatic extraction of relations between entities from text.
-These are usualy binary relations such as ``protein X activates gene Y'', ``drug X treats disease Y'' or ``gene X is associated with disease Y''.
-It is usually assumed that entities are already detected prior to relation extraction and that the set of relations is very limited.
-Still, relation extraction is a hard task because of the variation and ambiguity in language use.
-There are so many different ways to express essentially the same relation in language, that listing all of them is practically impossible.
-Hence straight forward lookup or template matching on words is bound to fail.
-Most systems perform a linguistic analysis step first, resulting in a more abstract representation ranging from a normalized surface string to syntactic or semantic graph structures. 
-Relations are then extracted by manually written pattern matching rules operating on the abstract representations.
-Alternatively, and more popular nowadays, extraction is performed in a data-driven way, whwre supervised machine learning algorithms learn to recognize relations from traning instances labeled by human annotators.
-Hybrid systems combine different approaches to obtain better performance.
- 
+There is basically two approaches to relation extraction: co-occurence-based approaches and NLP-based approaches.
 
-event extraction
+Co-occurence-based relation extraction follows a statistical approach. It infers that there is a relation between two entities whenever they tend to occur together frequently. 
+The scope of co-occurrence can be within a fixed-sized window, a sentence, a paragraph or even a whole document. 
+Different measures have been proposed to compute the association strenght between entities, but essentially all of these measure if two entities occur together more often than is to be expected by chance. 
+Co-occurence-based extraction does not require any advanced NLP, so it fairly robust against e.g. very complex or ill-formed input. It tends to give high recall at the cost of low precision. 
+That is, it tends to identify most of the true relations but also suggests many false relations. 
+In addition, relations are non-directional, which makes the approach suitable for only certain types of relation (e.g. correlation) but unsuitable for others (e.g. causality).
 
+NLP-based relation extraction targets binary relations such as ``protein X activates gene Y'', ``drug X treats disease Y'' or ``gene X is associated with disease Y''.
+It is usually assumed that entities are already detected prior to relation extraction and that the set of targeted relations is very limited.
+Still, relation extraction is a hard task because of the variation, ambiguity and vagueness in language use.
+There are so many different ways to express essentially the same relation in language, that listing all of them is practically impossible: there will always be new ways to say the same thing.
+Hence straight forward lookup or template matching on the word level is bound to fail.
+Most systems first perform a linguistic analysis step, resulting in a more abstract representation ranging from a normalized surface string to hih-level syntactic or semantic graph structures. 
+Relations are then extracted by manually written pattern matching rules operating on these abstract representations.
+Alternatively, and more popular nowadays, extraction is performed in a data-driven fashion, where supervised machine learning algorithms learn to recognize relations from training examples.
+This requires an annotated corpus of text material in which relations are labeled by human annotators.
+NLP-based extraction systems are more brittle, because they depend very much on the quality of the NLP tools such as part-of-speech taggers and syntactic parsers.
+They tends to give high precision but low recall.
+They are also more expensive to build, because of manual labour involved in writing pattern matching rules or annotating training corpora.
+However, extracted relations can be directional, which makes them potentially more useful for many applications. 
+
+Hybrid systems combine different approaches, sometimes both co-occurence-based and NLP-based, to obtain better performance.
+Another recent trend is to perform entitity recognition and relation extraction simultaneously in a single unified system.
+This potentially avoids error propagation in cases where failure to detect the correct entities prevents extraction of the correct relation.
+  
+\subsection{Event Extraction}
+
+Event extraction may be regarded as a generalization of relation extraction.
+Where relation extraction is limited to binary relations between two entities, events can involve multiple entities.
+These are labeled according to the role they play in the event, often called \emph{thematic roles}.
+Moreover, one event can play the role in another event, giving rise to recursive structures.
+Figure~\ref{fig:event-example} shows an example of an event from the BioNLP event extraction task.
+It has an event called \emph{Phosphorylation} that applies to the protein STAT3, which therefore plays the role of \emph{Theme} in this event.
+This \emph{Phosphorylation} event in turn plays the role of \emph{Theme} in another event called \emph{Regulation}, which also involves the protein Vav in the role of \emph{Cause}.
+A third event takes the same \emph{Theme} role (\emph{Phosphorylation}) but a different \emph{Cause} (Rac-1).
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.65]{figures/event-example.png}
+ \caption{Example of an event from the BioNLP event extraction task \citep{Bjorne2011EXTRACTING}}
+\label{fig:event-example}
+\end{center}
+\end{figure}
+
+Event extraction are almost exclusively NLP-based and usually involve syntactic parsing.
+It is closely related to the task of \emph{semantic role labelling} (SRL) which aims to label predictates and their semantic roles according to some general linguistic theory about semantic frames. 
+Approaches can be knowledge-based (hand-written rules), data-driven (supervised machine learning) or hybrid.
+Probabably the most succesful event extraction system for biomedicine acording to recent system evaluations is the Turku Event Extraction Systeem (TEES), which is a machine learning system employing support vector machines in combination with separate systems for entitity detection and syntactic parsing \citep{Bjorne2011EXTRACTING}. 
+
+Recently particular aspects of events have extracted attention, for example, negation and speculation. Negation detection systems try to detect if an event is in the scope of a of negation -- e.g. \emph{not}, \emph{neither} or \emph{lack of evidence for}. 
+Evidently, knowing that a fact is negated is crucial in any text mining application.
+Likewise, detection of speculation, modality, uncertainty or hedging provides important information.
+For example, an event may be qualified as \emph{possible}, \emph{unlikely} or \emph{not always}.
+The two regulation events in Figure~\ref{fig:event-example} are marked as \emph{Spec} (speculative) because of the modal verb \emph{may}, which signals a certain amount of uncertainty.
+
+\subsection{Evaluation}
+
+Comparing different approaches proposed to entity detection, relation extraction, event extraction and similar tasks in information extration and text mining is not easy, because results reported in the literature on different text material, or using different evaluation methods and measures, can not be compared with each other.
+However, without proper empirical evaluation, it is essentialy impossible to judge if any progress is made.
+Several evaluation initiatives in biomedical NLP and text mining have addressed this issue, including the BioCreative and BioNLP shared tasks.
+These follow the established practice in NLP and machine learning of providing a standard evaluation framework for a particular task consisting of labeled development data, blind test data and proper evaluation measures.   
+Participants build systems for performing the task -- e.g. entity detection -- on the basis of the labeled development data.
+They then apply their systems to label the the blind test data.
+The shared task organisers compare the system predictions to the true answers (gold standard) according to some evaluation measures, which allows the different systems to be ranked according to their performance on the task.
+Systematic comparison of the performance of different methods, in combination with detailed error analysis, defines the state-of-the-art and suggests ways for further improvement.
+
+Although this methodology has been instrumental in progressing the field, it is not without its disadvantages.
+For instance, systems are known to become overfitted on the type of text used in the evaluation.
+Applying the same system to text from a different domain may lead to dramatic drops in performance. 
 
 \section{Machine Reading and Open Information Extraction}
 
-\todo[inline]{NLU, open IE}
-
-\citet{Etzioni2011Search}
-
-From DeepDive:
-Knowledge-base construction (KBC) is the process of pop-
-ulating a knowledge base (KB) with facts (or assertions)
-extracted from text. It has recently received tremendous
-interest from academia, e.g., CMU's NELL [2] and MPI's
-YAGO [7,9], and from industry, e.g., IBM's DeepQA [5] and
-Microsoft's EntityCube [16]. 
-
+There are two other areas which are closely related to text mining, both involving NLP.
+The idea of \emph{machine reading} is essentially to enable computers to read text in electronic format, understand its meaning and extract knowledge from it in the same way as humans do \citep{Mitchell2005Reading}.
+Given the enormous amount of computer-readable text available on the internet and from scanned books, a functional machine reading system would allow computational agents to acquire knowledge on an unprecedented scale.
+\emph{Open information extraction} also aims for knowledge base population through informatin extraction from text \citet{banko2007open,Etzioni2011Search}.
+In contrast to traditional information extraction, where there is a fixed set predetermined relations, in open IE the set of relations is open, that is, any relation encoded in text is targeted.  
+Examples include the TextRunner open IE system and its succesors \citep{yates2007textrunner}, the DeepDive system \citep{niu2012deepdive}, CMU's Never Ending Language Learner (NELL) \citep{carlson-aaai} that learns to extract facts from the webpages,  MPI's YAGO system that learns fact from Wikipedia and combines them with WordNet \citep{YAGO} and IBM's Watson system that played Jeopardy \citep{fan2012automatic}.
 
 \todo[inline]{inference and reasoning, relation to GOFAI}
 
@@ -147,3 +227,4 @@ Microsoft's EntityCube [16].
 %%% mode: latex
 %%% TeX-master: "ocwp1-d1"
 %%% End: 
+
