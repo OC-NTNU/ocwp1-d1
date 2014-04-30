@@ -9,6 +9,8 @@
 *.toc
 auto/*
 .DS_Store
+!figures/*.pdf
+
 
 
 

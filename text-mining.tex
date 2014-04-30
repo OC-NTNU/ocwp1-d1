@@ -16,7 +16,7 @@ Text mining is applied in many different areas and for many different purposes; 
 Different domains require different approaches, techniques, tools and resources.
 For example, opinion mining regarding movies from social media is quite different from trend detection in financial markets. 
 In this report we focus on text mining of scientfic literature to support knowledge discovery, of which literature-based discovery is a particular variant.
-Text mining on scientific literature is commonly regarded as a combination of four tasks: information retrieval, information extraction, natural language processing and data mining.
+Mining of scientific literature is commonly regarded as a combination of four tasks: information retrieval, information extraction, natural language processing and data mining.
 
 \emph{Information retrieval} (IR) addresses the task of searching a large document collection for documents that are relevent to a user's informational needs as expressed in a search query \citep{ManningRaghavanSchutze:08}. 
 The most common IR applications nowadays are web search engines which try to retrieve relevant text documents from the web, mostly webpages, given a number of keywords or phrases.
@@ -26,8 +26,8 @@ IR is typically the first step in text mining in order to narrow down the set of
 \emph{Information extraction} (IE) is the process of automatically extracting structured information from text \citep{Jiang2012Information}.
 What type of structured information is extracted depends on the application, but usually involves two general types of information: \emph{entities} and \emph{relations}.
 Entities are the things mentioned in the text.
-These can be general classes like people, organisations, companies or places, but can also be domain-specific such as proteins, genes, drugs, organisms or anatomical parts.
-Finding entities in text is called \emph{named entity recognition}.
+These can be general categories like people, organisations, companies or places, but can also be domain-specific such as proteins, genes, drugs, organisms or anatomical parts.
+Finding entities in text is called \emph{named entity recognition} or \emph{entity detection}.
 Relations hold among pairs of entities.
 For example, a company can \emph{buy} another company, a certain protein may \emph{interact} with a certain gene, or a certain drug may \emph{cause} a certain side effect.
 The task of finding predefined relations in text is known as \emph{relation extraction}.  
@@ -77,7 +77,7 @@ There are already many excellent survey and review articles about text mining in
 \citep{Neves2012Survey,Simpson2012Biomedical,Andronis2011Literature,Ananiadou2010Event,RodriguezEsteban2009Biomedical,Zweigenbaum2009Advanced,Cohen2008Getting,Zweigenbaum2007Frontiers,Ananiadou2006,Erhardt2006Status,JenEA06,Spasic2005Text,Cohen2005Survey,Krauthammer2004Term,Blake2011Text,Krallinger2010Analysis}.
 Since we do not want to duplicate these efforts with yet another survey, our discussion here is limited to a couple of examples of text mining applications in biology and medicine.
 
-The Information Hyperlinked Over Proteins\footnote{\url{http://www.ihop-net.org}} (iHop) system \citep{hoffmann2004gene} is a free online service that provides acess to hyperlinked versions of abstracts from PubMed, a large database containing millions of abstract from journal articles in biomedicine.
+The Information Hyperlinked Over Proteins\footnote{\url{http://www.ihop-net.org}} (iHop) system \citep{hoffmann2004gene} is a free online service that provides access to hyperlinked versions of abstracts from PubMed, a large database containing millions of abstract from journal articles in biomedicine.
 Every occurrence of an enitity, such as a gene or a protein, is hyperlinked to its occurrences in other abstracts, making it easy to hop from one sentence/abstract to another one.
 Given a gene, users can search for other genes that it interacts with (Figure~\ref{fig:ihop-1}), go on to a list of sentences where the interactions are extracted from (Figure~\ref{fig:ihop-2}) , and go on from sentences to the abstracts they originate from  (Figure~\ref{fig:ihop-3}).   
 Interactions can be stored to build an interaction graph where nodes are genes and edges are links to sentences entailing the interaction. 
@@ -106,6 +106,47 @@ Interactions can be stored to build an interaction graph where nodes are genes a
 \end{center}
 \end{figure}
 
+Chilibot\footnote{\url{http://www.chilibot.net}} is a similar webservice for searching PubMed abstracts \citep{Chen2004Contentrich}.
+Users can search for interactions between a pairs of genes or proteins.
+List of terms can be supplied to perform exhaustive searches of all possible relationships between any two terms in a list.
+Search results can be further constrainted by any number of free-text keywords.
+In addition, there are special keywords like \emph{modulate} that triggers a search for regulatory relationships (inhibition, stimulation, increase, reduce, etc.),  
+The system returns sentences describing these interactions, linked to the abstacts they originate from.
+The results are also presented as a summary graph, with nodes representing the queried terms and edges representing the relationships.
+
+FACTA+\footnote{\url{http://www.nactem.ac.uk/facta/}} is a webservice for discovering associations between biomedical entities: gene/protein, disease, symptom, drug, enzyme, compound \citep{Tsuruoka2008FACTA}.
+It indexes all abstracts in MedLine and allows users to navigate the associations and the textual evidence in an intuitive way.
+Figure~\ref{fig:facta} shows FACTA+ presenting concepts associated to ``caffeine''.
+Associated concepts are organized per entity class and ranked according to their association strength.
+Several different measures are supported, e.g. frequency and mutual information.
+Clicking on the document icon present a list of text snippets that are the source for the associations, including a link to the full abstract.
+Clicking on any concept results in a new search for concepts associated to that concepts. 
+
+In addition, it is possibly to search for indirectly related concepts through a \emph{pivot} concept.
+This is akin to the ABC-linking in literature-based discovery.
+Both pivot concepts and target concepts can be restricted to a certain type, for example, protein and disease.
+
+The service has recetly been extended with a graphical visualisation component\footnote{\url{http://www.nactem.ac.uk/facta-visualizer/}}.
+Figure~\ref{fig:facta-vis} shows 
+This interactive visualisation also allows following links to text evidence and visualising indirect associations.
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.6]{figures/facta.pdf}
+ \caption{FACTA+ showing concepts associated to ``caffeine'' }
+\label{fig:facta}
+\end{center}
+\end{figure}
+  
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.6]{figures/facta-vis.pdf}
+ \caption{FACTA+ graphical visualisation showing concepts associated to ``caffeine'' }
+\label{fig:facta-vis}
+\end{center}
+\end{figure}
+
+
 \EM{More examples of applications/systems for text mining in biomedicine}
 
 
@@ -126,19 +167,19 @@ The use of acronyms or abbreviations instead of full names is common.
 Typos are not uncommon.
 All this variation in form means that it usually does not suffice to lookup a string in a given dictionary of named entities.
 
-Second, there is ambiguitity: a term may mean different things depending on the context.
+Second, there is ambiguity: a term may mean different things depending on the context.
 This is a common problem in NLP.
 For instance, the word \emph{bat} may refer to flying animal or to a hitting instrument, depending on the context of use.
 Automatically determining the right sense of a word is called \emph{word sense disambiguation}.
 In biomedicine, this is often referred to as \emph{entity normalization}, where each entity mention is linked to a unique indentifier in a database, controlled vocabulary or ontology, so its meaning becomes unambiguous. 
  
-Third, as science progresses in ceratin domain, so does the sublanguage to describe it, and consequently new terms are added all the time.
-This means that systems for named entity detectection must be updated all the time. 
+Third, as science progresses in certain domain, so does the sublanguage to describe it, and consequently new terms are added all the time.
+This means that systems for entity detection must be updated all the time. 
 In addition, terms may gradually change meaning over time, a phenomenon known as \emph{semantic drift}.
 
 \subsection{Relation Extraction}   
 
-Relation extraction aims at automatic extraction of relations between entities from text.
+, relation extarRelation extraction aims at automatic extraction of relations between entities from text.
 There is basically two approaches to relation extraction: co-occurence-based approaches and NLP-based approaches.
 
 Co-occurence-based relation extraction follows a statistical approach. It infers that there is a relation between two entities whenever they tend to occur together frequently. 
@@ -147,13 +188,12 @@ Different measures have been proposed to compute the association strenght betwee
 Co-occurence-based extraction does not require any advanced NLP, so it fairly robust against e.g. very complex or ill-formed input. It tends to give high recall at the cost of low precision. 
 That is, it tends to identify most of the true relations but also suggests many false relations. 
 In addition, relations are non-directional, which makes the approach suitable for only certain types of relation (e.g. correlation) but unsuitable for others (e.g. causality).
-
 NLP-based relation extraction targets binary relations such as ``protein X activates gene Y'', ``drug X treats disease Y'' or ``gene X is associated with disease Y''.
 It is usually assumed that entities are already detected prior to relation extraction and that the set of targeted relations is very limited.
 Still, relation extraction is a hard task because of the variation, ambiguity and vagueness in language use.
 There are so many different ways to express essentially the same relation in language, that listing all of them is practically impossible: there will always be new ways to say the same thing.
 Hence straight forward lookup or template matching on the word level is bound to fail.
-Most systems first perform a linguistic analysis step, resulting in a more abstract representation ranging from a normalized surface string to hih-level syntactic or semantic graph structures. 
+Most systems first perform a linguistic analysis step, resulting in a more abstract representation ranging from a normalized surface string to hihh-level syntactic or semantic graph structures. 
 Relations are then extracted by manually written pattern matching rules operating on these abstract representations.
 Alternatively, and more popular nowadays, extraction is performed in a data-driven fashion, where supervised machine learning algorithms learn to recognize relations from training examples.
 This requires an annotated corpus of text material in which relations are labeled by human annotators.
@@ -186,7 +226,7 @@ A third event takes the same \emph{Theme} role (\emph{Phosphorylation}) but a di
 \end{figure}
 
 Event extraction are almost exclusively NLP-based and usually involve syntactic parsing.
-It is closely related to the task of \emph{semantic role labelling} (SRL) which aims to label predictates and their semantic roles according to some general linguistic theory about semantic frames. 
+It is closely related to the task of \emph{semantic role labelling} (SRL) which aims to label predicates and their semantic roles according to some general linguistic theory about semantic frames. 
 Approaches can be knowledge-based (hand-written rules), data-driven (supervised machine learning) or hybrid.
 Probabably the most succesful event extraction system for biomedicine acording to recent system evaluations is the Turku Event Extraction Systeem (TEES), which is a machine learning system employing support vector machines in combination with separate systems for entitity detection and syntactic parsing \citep{Bjorne2011EXTRACTING}. 
 
@@ -228,3 +268,4 @@ Examples include the TextRunner open IE system and its succesors \citep{yates200
 %%% TeX-master: "ocwp1-d1"
 %%% End: 
 
+ 

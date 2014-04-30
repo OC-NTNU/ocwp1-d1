@@ -2,6 +2,15 @@
 
 \todo[inline]{Text mining work in related areas, e.g. Kyoto, GeoDeepDive, text mining for Marine Ecological Genomics, environmental QA in machine reading challenge}
 
+Text mining of scientific literature, and literature-based knowledge discovery in particular, has its roots in biomedicine.
+Research has matured to a level that text mining applications and services have started to be really helpful to researchers in biomedicine.
+Although biomedicine is still by far the most popular application domain, literature mining is now gradually spreading out to other scientific fields.
+Yet, despite our best efforts in searching the literature, published work on text mining in climate, marine or environmental science turned out to be extremely rare.
+On the one hand, this is unfortunate, because it means there is almost no prior work in our domain of interest that we can build on.
+On the other hand, it indicates that the work on literature-based discovery in Ocean-Certain is pushing the limits and holds potential for delivering new and interesting results.
+
+Given the lack of prior art, this chapter surveys work in fields outside biomedicine but related to Ocean-Certain, in fields such as chemistry, geology and ecology.
+The first part desribes tools and resources, whereas the second part addresses complete systems. 
 
 \section{Tools and Resources}
 
@@ -37,11 +46,10 @@ For instance, that \emph{marine algal bloom} is a kind of \emph{algal bloom}, wh
 
 WoRMS\footnote{\url{http://www.marinespecies.org/}}  (World Register of Marine Species) aims to provide an authoritative and comprehensive list of names of marine organisms, including information on synonymy \citep{Costello2013Global}.
 It contains over 220 thousand species, with an estmated coverage of over 95\%.
-There is webservice that allows tasks such getting the full classification for your taxa, resolving unaccepted names to accepted ones or resolving a common name to a scientific name.
+There is a webservice for tasks such getting the full classification for your taxa, resolving unaccepted names to accepted ones or resolving a common name to a scientific name.
 
 The Marine Metadata Interoperability\footnote{\url{https://marinemetadata.org/}} (MMI) project has as its mission promoting the exchange, integration and use of marine data through enhanced data publishing, discovery, documentation and accessibility.
-It hosts. among other things, an ontology repository and associated semantic framework that can be used by the marine science community to store, manage, and work with its scientific vocabularies.
-
+It hosts, among other things, an ontology repository and associated semantic framework that can be used by the marine science community to store, manage, and work with its scientific vocabularies.
 
 \subsection{Named Entity Taggers}
 
@@ -53,7 +61,7 @@ LINNAEUS\footnote{\url{http://linnaeus.sourceforge.net/}} is an open-source soft
 Enities are normalized by linking them to unique indentifiers the NCBI taxonomy database\footnote{\url{http://www.ncbi.nlm.nih.gov/taxonomy}}, a curated classification and nomenclature for all of the organisms in the public sequence databases, covering about 10\% of the described species of life on the planet.
 It uses a dictionary-based approach to identify species names and a set of heuristics to resolve ambiguous mentions, obtaining 94\% recall and 97\% precision on entity recognition, with 97\% of all mentions resolved to the correct NCBI taxonomy identifiers.
  
-The SPECIES (Identification of Taxonomic Mentions in Text) project\footnote{\url{http://species.jensenlab.org/}} has developed taggers for species and organisms mentions in text \citep{Pafilis2013SPECIES}. 
+The SPECIES (Identification of Taxonomic Mentions in Text) project\footnote{\url{http://species.jensenlab.org/}} has developed taggers for species and organism mentions in text \citep{Pafilis2013SPECIES}. 
 The taggers allow for both identification of names in the text and normalization to the corresponding entries in the NCBI taxonomy.
 These tools are claimed to be an order of magnitude faster than LINNAEUS.
 
@@ -62,21 +70,17 @@ It can be used to identify chemical names, reaction names, ontology terms, enzym
 In addition, where possible, any chemical names detected will be annotated with structures derived either by lookup, or name-to-structure parsing using OPSIN or with identifiers from the ChEBI (Chemical Entities of Biological Interest) ontology.
 
 ChemSpot\footnote{\url{https://www.informatik.hu-berlin.de/forschung/gebiete/wbi/resources/chemspot/chemspot/}} is another set of tools for named entity recognition and classification of chemicals in texts, including trivial names, abbreviations, molecular formulas and International Union of Pure and Applied Chemistry (IUPAC) chemical compounds. 
-ChemSpot employs supervised-machine learning (Conditional Random Field) and a dictionary, as well as pattern-based recognition, a classifier model and several methods for consolidating all annotations. 
-ChemSpot also performs named entity normalization by assigning identifiers from numerous chemical databases. 
+ChemSpot employs supervised-machine learning (Conditional Random Fields) and a dictionary, as well as pattern-based recognition, a classifier model and several methods for consolidating all annotations. 
+ChemSpot also performs entity normalization by assigning identifiers from numerous chemical databases. 
 
-CheNER\footnote{\url{http://chener.bioinfo.cnio.es/}} (Chemical Named Entity Recognizer) is another recent tool. It specializes on processing IUPAC entities, on which it is shown to outperform Chemspot \citep{Usie2014CheNER}.
+CheNER\footnote{\url{http://chener.bioinfo.cnio.es/}} (Chemical Named Entity Recognizer) is another recent tool. It specializes in processing IUPAC entities, on which it is shown to outperform Chemspot \citep{Usie2014CheNER}.
 
-The ENVIRONMENTS\footnote{\url{http://envo.her.hcmr.gr/environments.html}} (Identification of Environment Descriptive Terms in Text) project aims to produce software identifying environment descriptive terms in text, such as coral reef, cultivated land, glacier, pelagic, forest, lagoon.
+The ENVIRONMENTS\footnote{\url{http://envo.her.hcmr.gr/environments.html}} (Identification of Environment Descriptive Terms in Text) project aims to produce software identifying environment descriptive terms in text, such as \emph{coral reef}, \emph{cultivated land}, \emph{glacier}, \emph{pelagic}, \emph{forest} or \emph{lagoon}.
 It allows for orthographic variation in the way the terms are written (e.g. plural forms and spacing/hyphenation like in freshwater, fresh-water, and "fresh water).
 Terms are normalized by linking them to a unique identifier is the Environmental Ontology (EnvO).
 The project is ongoing and as of yet no software has been released.
 
 \section{Text Mining Systems}
-
-To the best of our knowledge, there are no publications about text mining in climate, marine or environmental Science, nor is there any software available for text mining in these fields.
-Likewise, there are no literature-based knowledge discovery systems in these fields.
-This section surveys text mining systems in relatively related areas such as ecology and geology, with the exception of biomedical text minning, which was already discussed in chapter~\ref{sec:tm-biomed}.  
 
 EnvMine is a text-mining system in the field of microbial ecology that automatically extracts contextual information from text like published articles or web pages \cite{Tamames2010EnvMine}.
 The motivation is that in ecological studies, it is crucial to have adequate descriptions of the environments and samples being studied. 
@@ -85,10 +89,10 @@ Physicochemical varables include temperature, size, volume, pH, concentration, t
 These are expressed by a combination of measure and unit, e.g. ``a depth of 250 ''.
 As often the variable is implicit in the text, the system is capable of inferring it; e.g. it infers from ``5 degrees C'' that the variable is ``temperature''.  
 Geographical locations are normalized by geographical coordinates. 
-The system is quite accurat, achieving a recall of 92\% with less than 1\% error on variables, whereas it achieves 86\% recall with 92\% precision on goegraphical locations.
+The system is quite accurate, achieving a recall of 92\% with less than 1\% error on variables, whereas it achieves 86\% recall with 92\% precision on goegraphical locations.
 
 Related to this is the shared task on bacteria biotope at BioNLP 2011 and 2013 \citep{bossy2013bionlp}.
-The bacteria biotope task aims to extract bacteria and their locations from scientific web pages and to characterize these locations with respect to the OntoBiotope ontology of microbe habitats.
+The bacteria biotope task is to extract bacteria and their locations from scientific web pages and to characterize these locations with respect to the OntoBiotope ontology of microbe habitats.
 This facilitates studying the interaction between species and their environment and  the underlying biological mechanisms at a molecular level.
 There are two sub-tasks, entity detection and event extraction.
 An example of event extraction is shown in Figure~\ref{fig:biotope}.
@@ -104,8 +108,19 @@ There were four participating systems in the 2013 task, with F-scores ranging fr
 \end{center}
 \end{figure} 
 
-The KYOTO\footnote{\url{http://kyoto-project.eu/}} (Knowledge Yielding Ontologies for Transition-based Organization) project  
+The KYOTO\footnote{\url{http://kyoto-project.eu/}} (Knowledge Yielding Ontologies for Transition-based Organization) project developed a system that allows people in communities to define the meaning of their words and terms in a shared Wiki platform in a formal way \citep{Vossen2008}.
+Part of the project was developing tools to automatically extract facts from large amounts of text and making these fact bases available.
+One of the application domains was environmental science.
+Figure~\ref{fig:kyoto} shows a graph representing facts extracted from a single sentence.
+Several large sets of extracted facts can be downloaded, including those from publications by European Environment Agency and articles from the Journal of Environmental Biology.\EM{Kyoto deserves much more attention, but the website is such a mess that is hard to figure out the big picture.}  
 
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.35]{figures/kyoto.png}
+ \caption{Fact graph extracted by Kyoto system from the sentence ``Scientists predict that climate change could also cause a decrease in underwater grasses, more "dead zones" of low oxygen, more annual precipitation and a resulting increase in the flow of pollution, fewer wintering waterfowl, and a change in the types of plants and animals that live in the area.''}
+\label{fig:kyoto}
+\end{center}
+\end{figure} 
 
 
 GeoDeepDive\footnote{\url{http://hazy.cs.wisc.edu/hazy/geodeepdive}} is another text mining system for extracting information and knowledge from text, tables, and figures of geology journal articles \citep{Zhang2013GeoDeepDive}.
