@@ -14,9 +14,9 @@ Many search queries result in thousands of hits and sifting through all these do
 This is where techniques and applications from the field of natural language processing (NLP) can offer a better solution.
 NLP is about automatic processing of natural language -- written or spoken -- by means of computers \citep{jurafsky2000speech,manning1999foundations}.
 There are many applications of NLP, some of which are potentially valuable to scientists.   
-\emph{Question-Answering}, for example, attempts to directly find the correct answer in a large text collection, in resonse to a particular question posed by the user, taking the burden of the user to sift through all possibly relevant documents by hand.
-\emph{Automatic summarization} aims at summarizing single texts, or multiple texts about the same topic, at different levels of compression, optionally guided by specific points of interest as expressed by the user.
-\emph{Information extraction} tries to extract structured information (tables) from text collection according to prespecified search patterns, e.g., ``poteinA interacts with protein B'' or ``organism A feeds on organism B''.
+\emph{Question-Answering}, for example, attempts to directly find the correct answer in a large text collection, in response to a particular question posed by the user, taking the burden of the user to sift through all possibly relevant documents by hand.
+\emph{Automatic summarisation} aims at summarising single texts, or multiple texts about the same topic, at different levels of compression, optionally guided by specific points of interest as expressed by the user.
+\emph{Information extraction} tries to extract structured information (tables) from text collection according to pre-specified search patterns, e.g., ``protein A interacts with protein B'' or ``organism A feeds on organism B''.
 These are just three examples of common applications of NLP which can benefit researchers in coping with scientific literature.
 None of these applications work flawlessly at the moment, but they have matured to a level which makes them practically useful tools in certain limited domains.
 Moreover, ongoing research in NLP and related areas holds the promise for further improvement.
@@ -24,10 +24,10 @@ Moreover, ongoing research in NLP and related areas holds the promise for furthe
 The growth of science has also given rise to increasing levels of specialisation.
 Where historically scientists and researchers would routinely read and study literature outside of their main fields of expertise, the time pressures of modern science make this harder and harder.
 The Renaissance idea of the ``homo universalis'' is nowadays beyond the reach of most mortal scientists.
-This is unfortunate, because the tendency of science to analyse and reduce its subject matter to smaller and smaller pieces ought to be counterbalanced by an effort to consolidate and synthesize existing knowledge in order to gain true insight.    
+This is unfortunate, because the tendency of science to analyse and reduce its subject matter to smaller and smaller pieces ought to be counterbalanced by an effort to consolidate and synthesise existing knowledge in order to gain true insight.    
 In other words, there is so much scientific knowledge that it is hard for us to see the big picture.
-As a result, very similar or even indentical ideas, theories, methods and tools are developed in disjoint research communities which do not communicate with each other.
-Use of different terminologies and conventions can make it hard to find such relatonships with coventional search engines.  
+As a result, very similar or even identical ideas, theories, methods and tools are developed in disjoint research communities which do not communicate with each other.
+Use of different terminologies and conventions can make it hard to find such relationships with conventional search engines.  
 
 Part of the solution to this problem is likely to come from computational methods for efficient processing of massive amounts of text.
 Such methods are developed in the field of \emph{text mining} -- also known as \emph{knowledge discovery from text} or \emph{text analytics} -- which combines methods from natural language processing, artificial intelligence and data mining \citep{Aggarwal2012Mining,Weiss2012Fundamentals}.
@@ -37,10 +37,10 @@ When applied to scientific literature, text mining is also known as \emph{litera
 For instance, thousands of journals and books on paleobiology can be automatically processed to extract all instances of the fact that species S occurred during a certain geological time unit T.
 From these data, it becomes possible to draw a \emph{biodiversity curve}, which represents fluctuations in the overal number of species over the past million of years.
 Collecting all these data by hand would be practically infeasible.
-This is just one example to illustrate how text mining may enable synthesis of existing knowledge burried in text, facilitating new insight on a larger scale.  
+This is just one example to illustrate how text mining may enable synthesis of existing knowledge buried in text, facilitating new insight on a larger scale.  
 
 One particular variant of text mining is known as\emph{ literature-based knowledge discovery} (LBD), which originates from one of the earliest attempts at text mining by \citet{swa86a}.
-Whereas many text mining efforts are primarlily concerened with extracting existing knowledge from text, e.g. to populate data bases with new records, LBD has the ambition to uncover new new knowledge that is not explicitly described in the text.
+Whereas many text mining efforts are primarily concerned with extracting existing knowledge from text, e.g. to populate data bases with new records, LBD has the ambition to uncover new new knowledge that is not explicitly described in the text.
 It attempts to find hidden relations between concepts in order to suggest new hypotheses.
 These relations usually span disjoint literatures of papers which do not cite each other. 
 One of the classical examples is the finding in the literature that fish oils reduced blood viscosity, and another one that patients of Raynaud's disease tend to exhibit high blood viscosity. 
@@ -56,16 +56,16 @@ These are feats that are impossible for humans.
 Thus, even though computer processing of text is currently noisy and shallow, the gain comes from the large numbers.
 
 The potential of text mining to facilitate unification and synthesis of existing knowledge, as well as to reduce the information overload of scientists in practice, fits well within the Ocean-Certain framework \citep{Olsen2013Ocean}.
-The main topics addressed in the project -- food web and biological pump in relation to climate change -- are inherently multi-displinary, involving primary fields such as biology, chemistry, climatology, geology and physics, as well as  multi-displinary fields such as marine science and climate science.
-A central theme in the project is therefore consilience, that is, unification of knowledge across diciplines by promoting a mutual understanding.
-Susbtantial efforts towards this goal are planned accordingly, cumulating in WP4.
+The main topics addressed in the project -- food web and biological pump in relation to climate change -- are inherently multi-disciplinary, involving primary fields such as biology, chemistry, climatology, geology and physics, as well as  multi-disciplinary fields such as marine science and climate science.
+A central theme in the project is therefore consilience, that is, unification of knowledge across disciplines by promoting a mutual understanding.
+Substantial efforts towards this goal are planned accordingly, cumulating in WP4.
 The scientific literature poses a challenge for consilience, not only because of the volume of potentially relevant publications, but also because of disjoint research communities with different conventions and terminologies.
-Text mining in WP1 therefore aims at finding hidden relations between concepts, with the ultimate goal of suggesting new hypotheses drawing upon work in literature-based knowlede discovery.
+Text mining in WP1 therefore aims at finding hidden relations between concepts, with the ultimate goal of suggesting new hypotheses drawing upon work in literature-based knowledge discovery.
 The plan is to take existing work and port it to the domain of Ocean-Certain, reusing as much as possible existing theories, models, applications, tools and resources.
 This is motivated by both good scientific practice and by limited time and resource in WP1.
 As a first step in that direction, this deliverable surveys text mining, with an emphasis on literature-based knowledge discovery.
 The goal is to present the general framework and the state-of-the-art.
-Since biomedine is the first, most popular and most advanced application area for text mining of scientific literature, a substantial part is necessarily dedicated to biomedical text mining.
+Since biomedicine is the first, most popular and most advanced application area for text mining of scientific literature, a substantial part is necessarily dedicated to biomedical text mining.
 This is followed by a review of text mining in climate, marine and environmental science, although prior work in this area was found to be virtually non-existent. 
 However, efforts in related areas such as geology and ecology are reviewed.
 Finally, some issues in relation to text mining in climate, marine and environmental science are discussed and plans for future are briefly outlined.
